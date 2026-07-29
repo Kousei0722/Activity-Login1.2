@@ -1,0 +1,533 @@
+/*
+|--------------------------------------------------------------------------
+| RESET
+|--------------------------------------------------------------------------
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #ffffff;
+
+    background: url(https://getwallpapers.com/wallpaper/full/6/f/1/1391993-popular-dark-background-images-2400x1500.jpg) no-repeat center;
+}
+
+/*
+|--------------------------------------------------------------------------
+| PAGE SECTION
+|--------------------------------------------------------------------------
+*/
+
+section {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px 18px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| VERIFY CARD
+|--------------------------------------------------------------------------
+*/
+
+.forgot-box {
+    position: relative;
+
+    width: min(420px,
+            100%);
+
+    padding:
+        38px 35px 32px;
+
+    border:
+        2px solid rgba(255,
+            255,
+            255,
+            0.45);
+
+    border-radius: 22px;
+
+    background:
+        rgba(5,
+            10,
+            18,
+            0.62);
+
+    box-shadow:
+        0 25px 65px rgba(0,
+            0,
+            0,
+            0.48),
+        inset 0 1px 0 rgba(255,
+            255,
+            255,
+            0.12);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+}
+
+/*
+|--------------------------------------------------------------------------
+| FORM
+|--------------------------------------------------------------------------
+*/
+
+.forgot-box form {
+    width: 100%;
+}
+
+/*
+|--------------------------------------------------------------------------
+| TITLE
+|--------------------------------------------------------------------------
+*/
+
+.forgot-box h2 {
+    margin-bottom: 10px;
+
+    color: #ffffff;
+
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.15;
+
+    text-align: center;
+}
+
+/*
+|--------------------------------------------------------------------------
+| DESCRIPTION
+|--------------------------------------------------------------------------
+*/
+
+.text {
+    margin-bottom: 25px;
+
+    color:
+        rgba(255,
+            255,
+            255,
+            0.8);
+
+    font-size: 0.9rem;
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+/*
+|--------------------------------------------------------------------------
+| ERROR MESSAGE
+|--------------------------------------------------------------------------
+*/
+
+.form-message {
+    width: 100%;
+
+    padding:
+        11px 13px;
+
+    margin-bottom: 20px;
+
+    border:
+        1px solid rgba(255,
+            111,
+            120,
+            0.42);
+
+    border-radius: 10px;
+
+    background:
+        rgba(151,
+            33,
+            45,
+            0.84);
+
+    color: #ffffff;
+
+    font-size: 0.86rem;
+    line-height: 1.4;
+
+    text-align: center;
+}
+
+/*
+|--------------------------------------------------------------------------
+| INPUT BOX
+|--------------------------------------------------------------------------
+*/
+
+.input-box {
+    position: relative;
+
+    width: 100%;
+    height: 58px;
+
+    margin:
+        28px 0 14px;
+
+    border-bottom:
+        2px solid rgba(255,
+            255,
+            255,
+            0.9);
+}
+
+/*
+|--------------------------------------------------------------------------
+| CODE INPUT
+|--------------------------------------------------------------------------
+*/
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+
+    padding:
+        19px 14px 5px;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 1.35rem;
+    font-weight: 700;
+
+    text-align: center;
+    letter-spacing: 10px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| FLOATING LABEL
+|--------------------------------------------------------------------------
+*/
+
+.input-box label {
+    position: absolute;
+
+    top: 50%;
+    left: 14px;
+
+    color:
+        rgba(255,
+            255,
+            255,
+            0.75);
+
+    font-size: 0.92rem;
+
+    pointer-events: none;
+
+    transform:
+        translateY(-50%);
+
+    transition:
+        top 0.2s ease,
+        font-size 0.2s ease,
+        color 0.2s ease;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: 6px;
+
+    color: #7ce5ff;
+
+    font-size: 0.72rem;
+
+    transform: none;
+}
+
+/*
+|--------------------------------------------------------------------------
+| INPUT FOCUS
+|--------------------------------------------------------------------------
+*/
+
+.input-box:focus-within {
+    border-bottom-color:
+        #7ce5ff;
+}
+
+.input-box input:focus {
+    outline: none;
+}
+
+/*
+|--------------------------------------------------------------------------
+| CHROME AUTOFILL
+|--------------------------------------------------------------------------
+*/
+
+.input-box input:-webkit-autofill,
+.input-box input:-webkit-autofill:hover,
+.input-box input:-webkit-autofill:focus {
+    -webkit-text-fill-color:
+        #ffffff;
+
+    caret-color:
+        #ffffff;
+
+    box-shadow:
+        0 0 0 1000px transparent inset;
+
+    -webkit-box-shadow:
+        0 0 0 1000px transparent inset;
+
+    transition:
+        background-color 9999s ease-in-out 0s;
+}
+
+/*
+|--------------------------------------------------------------------------
+| COUNTDOWN TIMER
+|--------------------------------------------------------------------------
+*/
+
+.timer {
+    margin:
+        12px 0 22px;
+
+    color:
+        rgba(255,
+            255,
+            255,
+            0.82);
+
+    font-size: 0.85rem;
+
+    text-align: center;
+}
+
+.timer strong {
+    margin-left: 4px;
+
+    color: #72e8ff;
+
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+/*
+|--------------------------------------------------------------------------
+| VERIFY BUTTON
+|--------------------------------------------------------------------------
+*/
+
+.btn {
+    width: 100%;
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding:
+        12px 20px;
+
+    border: none;
+    border-radius: 999px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #101820;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 0.98rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px rgba(0,
+            0,
+            0,
+            0.22);
+
+    transition:
+        transform 0.18s ease,
+        background 0.18s ease,
+        box-shadow 0.18s ease,
+        opacity 0.18s ease;
+}
+
+.btn:hover {
+    background: #e7f8ff;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 14px 30px rgba(0,
+            0,
+            0,
+            0.28);
+}
+
+.btn:active {
+    transform:
+        translateY(0);
+}
+
+.btn:focus-visible {
+    outline:
+        2px solid #72d9ff;
+
+    outline-offset:
+        3px;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/*
+|--------------------------------------------------------------------------
+| BACK LINKS
+|--------------------------------------------------------------------------
+*/
+
+.back {
+    margin-top: 15px;
+
+    text-align: center;
+}
+
+.back+.back {
+    margin-top: 10px;
+}
+
+.back a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    color:
+        rgba(255,
+            255,
+            255,
+            0.86);
+
+    font-size: 0.86rem;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease;
+}
+
+.back a:hover {
+    color: #78deff;
+    text-decoration: underline;
+}
+
+/*
+|--------------------------------------------------------------------------
+| DISABLED CODE INPUT
+|--------------------------------------------------------------------------
+*/
+
+.input-box input:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/*
+|--------------------------------------------------------------------------
+| RESPONSIVE DESIGN
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 520px) {
+    section {
+        padding:
+            20px 14px;
+    }
+
+    .forgot-box {
+        padding:
+            32px 24px 27px;
+
+        border-radius: 18px;
+    }
+
+    .forgot-box h2 {
+        font-size: 1.75rem;
+    }
+
+    .input-box input {
+        font-size: 1.2rem;
+        letter-spacing: 8px;
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| EXTRA SMALL SCREENS
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 360px) {
+    .forgot-box {
+        padding:
+            28px 19px 24px;
+    }
+
+    .forgot-box h2 {
+        font-size: 1.55rem;
+    }
+
+    .text {
+        font-size: 0.84rem;
+    }
+
+    .input-box input {
+        font-size: 1.1rem;
+        letter-spacing: 6px;
+    }
+}

@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background: url("https://getwallpapers.com/wallpaper/full/6/f/1/1391993-popular-dark-background-images-2400x1500.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    animation: animateBg 5s linear infinite;
+}
+
+@keyframes animateBg {
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 30px 20px;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, .08);
+    border-right: 2px solid rgba(255, 255, 255, .2);
+}
+
+.sidebar h2 {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 28px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin: 18px 0;
+}
+
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.sidebar ul li a:hover {
+    background: #0ef;
+    color: #162938;
+    transform: translateX(5px);
+}
+
+.sidebar ul li a i {
+    font-size: 22px;
+}
+
+
+.main {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    padding: 40px;
+}
+
+.top {
+    margin-bottom: 30px;
+}
+
+.top h1 {
+    color: #fff;
+    font-size: 35px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, .08);
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 20px;
+    padding: 30px;
+    color: #fff;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 20px rgba(0, 238, 255, .4);
+}
+
+.card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 35px;
+    font-weight: bold;
+    color: #0ef;
+}
+
+.table-box {
+    margin-top: 40px;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, .08);
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.table-box h2 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    padding: 15px;
+    text-align: left;
+    color: #fff;
+}
+
+table th {
+    background: rgba(255, 255, 255, .1);
+}
+
+table tr {
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+table tr:hover {
+    background: rgba(255, 255, 255, .05);
+}
+
+
+button {
+    background: #0ef;
+    color: #162938;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: .3s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 238, 255, .5);
+}
+
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0ef;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111;
+}
+
+
+@media(max-width:900px) {
+
+    .sidebar {
+        width: 220px;
+    }
+
+    .main {
+        margin-left: 220px;
+        width: calc(100% - 220px);
+        padding: 25px;
+    }
+
+}
+
+@media(max-width:768px) {
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .main {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media(max-width:500px) {
+
+    .sidebar h2 {
+        font-size: 22px;
+    }
+
+    .sidebar ul li a {
+        font-size: 16px;
+    }
+
+    .top h1 {
+        font-size: 28px;
+    }
+
+}
