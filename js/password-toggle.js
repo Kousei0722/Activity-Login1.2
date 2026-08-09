@@ -5,8 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const input = document.getElementById(button.dataset.target);
 
         if (!input) return;
-
-        // Hanapin ang lock icon sa parehong input container
         const container = input.closest(".input-box, .input-field");
         const lockIcon = container
             ? container.querySelector(".icon, .field-icon")
@@ -15,8 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
         function updateIcons() {
 
             if (input.value.trim() === "") {
-
-                // Walang input
                 button.style.display = "none";
 
                 if (lockIcon) {
@@ -24,8 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
             } else {
-
-                // May input
                 button.style.display = "flex";
 
                 if (lockIcon) {
