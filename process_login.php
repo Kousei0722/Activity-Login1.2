@@ -5,12 +5,6 @@ session_start();
 require_once "config.php";
 require_once "helpers.php";
 
-/*
-|--------------------------------------------------------------------------
-| ALLOW POST REQUESTS ONLY
-|--------------------------------------------------------------------------
-*/
-
 if (
     $_SERVER["REQUEST_METHOD"]
     !== "POST"
@@ -23,12 +17,6 @@ if (
 
     exit;
 }
-
-/*
-|--------------------------------------------------------------------------
-| GET LOGIN INPUT
-|--------------------------------------------------------------------------
-*/
 
 $identifier =
     trim(
@@ -46,22 +34,12 @@ $rememberMe =
     )
     && $_POST["remember_me"] === "1";
 
-/*
-|--------------------------------------------------------------------------
-| CHECK EMPTY FIELDS
-|--------------------------------------------------------------------------
-*/
-
 if (
     $identifier === ""
     || $password === ""
 ) {
     $_SESSION["error"] =
         "Please enter your username or email and password.";
-
-    /*
-    Keep the identifier only temporarily after an error.
-    */
 
     $_SESSION["old_login_identifier"] =
         $identifier;
@@ -74,12 +52,6 @@ if (
 
     exit;
 }
-
-/*
-|--------------------------------------------------------------------------
-| FIND USER
-|--------------------------------------------------------------------------
-*/
 
 $sql = "
     SELECT
@@ -130,12 +102,6 @@ $user =
 
 $stmt->close();
 
-/*
-|--------------------------------------------------------------------------
-| USER NOT FOUND
-|--------------------------------------------------------------------------
-*/
-
 if (!$user) {
     $_SESSION["error"] =
         "Invalid username, email, or password.";
@@ -170,12 +136,6 @@ $lockUntilTimestamp =
     ? strtotime($lockUntilValue)
     : 0;
 
-/*
-|--------------------------------------------------------------------------
-| CHECK CURRENT ACCOUNT LOCK
-|--------------------------------------------------------------------------
-*/
-
 if (
     $lockUntilTimestamp > time()
 ) {
@@ -196,12 +156,6 @@ if (
 
     exit;
 }
-
-/*
-|--------------------------------------------------------------------------
-| CLEAR EXPIRED ACCOUNT LOCK
-|--------------------------------------------------------------------------
-*/
 
 if (
     $lockUntilTimestamp > 0
@@ -233,12 +187,6 @@ if (
     $failedAttempts = 0;
 }
 
-/*
-|--------------------------------------------------------------------------
-| CHECK ACCOUNT STATUS
-|--------------------------------------------------------------------------
-*/
-
 if (
     strtolower(
         $user["account_status"]
@@ -260,12 +208,6 @@ if (
     exit;
 }
 
-/*
-|--------------------------------------------------------------------------
-| VERIFY PASSWORD
-|--------------------------------------------------------------------------
-*/
-
 if (
     !password_verify(
         $password,
@@ -273,10 +215,6 @@ if (
     )
 ) {
     $failedAttempts++;
-
-    /*
-    Lock after five failed attempts.
-    */
 
     if ($failedAttempts >= 5) {
         $lockUntilTimestamp =
@@ -368,12 +306,6 @@ if (
     exit;
 }
 
-/*
-|--------------------------------------------------------------------------
-| SUCCESSFUL LOGIN
-|--------------------------------------------------------------------------
-*/
-
 $resetSql = "
     UPDATE users
     SET
@@ -396,12 +328,6 @@ if ($resetStmt) {
     $resetStmt->execute();
     $resetStmt->close();
 }
-
-/*
-|--------------------------------------------------------------------------
-| CREATE SESSION
-|--------------------------------------------------------------------------
-*/
 
 session_regenerate_id(
     true
@@ -426,12 +352,6 @@ $_SESSION["role"] =
 $_SESSION["LAST_ACTIVITY"] =
     time();
 
-/*
-|--------------------------------------------------------------------------
-| REMEMBER ME
-|--------------------------------------------------------------------------
-*/
-
 if ($rememberMe) {
     $rememberCreated =
         createRememberToken(
@@ -440,9 +360,6 @@ if ($rememberMe) {
         );
 
     if (!$rememberCreated) {
-        /*
-        Login still succeeds, but record the server-side issue.
-        */
 
         error_log(
             "Remember Me token was not created for user ID: "
@@ -450,20 +367,11 @@ if ($rememberMe) {
         );
     }
 } else {
-    /*
-    Remove an existing remember token when unchecked.
-    */
 
     deleteCurrentRememberToken(
         $conn
     );
 }
-
-/*
-|--------------------------------------------------------------------------
-| REMOVE TEMPORARY LOGIN VALUES
-|--------------------------------------------------------------------------
-*/
 
 unset(
     $_SESSION["error"],
@@ -471,12 +379,6 @@ unset(
     $_SESSION["old_login_identifier"],
     $_SESSION["lock_until_timestamp"]
 );
-
-/*
-|--------------------------------------------------------------------------
-| ACTIVITY LOG
-|--------------------------------------------------------------------------
-*/
 
 writeActivityLog(
     $conn,
