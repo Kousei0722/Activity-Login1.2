@@ -1,29 +1,8 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| REMEMBER COOKIE NAME
-|--------------------------------------------------------------------------
-*/
-
 const REMEMBER_COOKIE_NAME = "remember_login";
 
-/*
-|--------------------------------------------------------------------------
-| REMEMBER COOKIE DURATION
-|--------------------------------------------------------------------------
-|
-| 30 days
-|--------------------------------------------------------------------------
-*/
-
 const REMEMBER_COOKIE_DURATION = 60 * 60 * 24 * 30;
-
-/*
-|--------------------------------------------------------------------------
-| CHECK HTTPS
-|--------------------------------------------------------------------------
-*/
 
 function isHttpsConnection(): bool
 {
@@ -32,12 +11,6 @@ function isHttpsConnection(): bool
         && $_SERVER["HTTPS"] !== "off"
     );
 }
-
-/*
-|--------------------------------------------------------------------------
-| SET REMEMBER COOKIE
-|--------------------------------------------------------------------------
-*/
 
 function setRememberCookie(
     string $selector,
@@ -60,19 +33,9 @@ function setRememberCookie(
         ]
     );
 
-    /*
-    Make the cookie available during the current request.
-    */
-
     $_COOKIE[REMEMBER_COOKIE_NAME] =
         $cookieValue;
 }
-
-/*
-|--------------------------------------------------------------------------
-| DELETE REMEMBER COOKIE
-|--------------------------------------------------------------------------
-*/
 
 function deleteRememberCookie(): void
 {
@@ -93,12 +56,6 @@ function deleteRememberCookie(): void
         $_COOKIE[REMEMBER_COOKIE_NAME]
     );
 }
-
-/*
-|--------------------------------------------------------------------------
-| PARSE REMEMBER COOKIE
-|--------------------------------------------------------------------------
-*/
 
 function parseRememberCookie(): ?array
 {
@@ -148,12 +105,6 @@ function parseRememberCookie(): ?array
     ];
 }
 
-/*
-|--------------------------------------------------------------------------
-| DELETE EXPIRED TOKENS
-|--------------------------------------------------------------------------
-*/
-
 function deleteExpiredRememberTokens(
     mysqli $conn
 ): void {
@@ -164,12 +115,6 @@ function deleteExpiredRememberTokens(
 
     $conn->query($sql);
 }
-
-/*
-|--------------------------------------------------------------------------
-| DELETE USER REMEMBER TOKENS
-|--------------------------------------------------------------------------
-*/
 
 function deleteUserRememberTokens(
     mysqli $conn,
@@ -195,12 +140,6 @@ function deleteUserRememberTokens(
     $stmt->execute();
     $stmt->close();
 }
-
-/*
-|--------------------------------------------------------------------------
-| DELETE CURRENT REMEMBER TOKEN
-|--------------------------------------------------------------------------
-*/
 
 function deleteCurrentRememberToken(
     mysqli $conn
@@ -237,19 +176,10 @@ function deleteCurrentRememberToken(
     deleteRememberCookie();
 }
 
-/*
-|--------------------------------------------------------------------------
-| CREATE REMEMBER TOKEN
-|--------------------------------------------------------------------------
-*/
-
 function createRememberToken(
     mysqli $conn,
     int $userId
 ): bool {
-    /*
-    Remove old tokens for the same account.
-    */
 
     deleteUserRememberTokens(
         $conn,
@@ -350,12 +280,6 @@ function createRememberToken(
 
     return true;
 }
-
-/*
-|--------------------------------------------------------------------------
-| LOGIN USER FROM REMEMBER COOKIE
-|--------------------------------------------------------------------------
-*/
 
 function tryRememberLogin(
     mysqli $conn
@@ -474,10 +398,6 @@ function tryRememberLogin(
         return false;
     }
 
-    /*
-    Protect against session fixation.
-    */
-
     session_regenerate_id(
         true
     );
@@ -501,10 +421,6 @@ function tryRememberLogin(
     $_SESSION["LAST_ACTIVITY"] =
         time();
 
-    /*
-    Rotate token after successful automatic login.
-    */
-
     createRememberToken(
         $conn,
         (int) $record["user_id"]
@@ -513,12 +429,6 @@ function tryRememberLogin(
     return true;
 }
 
-/*
-|--------------------------------------------------------------------------
-| GET CLIENT IP ADDRESS
-|--------------------------------------------------------------------------
-*/
-
 function getClientIpAddress(): string
 {
     return (
@@ -526,12 +436,6 @@ function getClientIpAddress(): string
         ?? "Unknown"
     );
 }
-
-/*
-|--------------------------------------------------------------------------
-| WRITE ACTIVITY LOG
-|--------------------------------------------------------------------------
-*/
 
 function writeActivityLog(
     mysqli $conn,
