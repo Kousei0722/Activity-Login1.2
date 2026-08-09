@@ -2,12 +2,6 @@
 
 require_once "auth.php";
 
-/*
-|--------------------------------------------------------------------------
-| GET SESSION MESSAGES
-|--------------------------------------------------------------------------
-*/
-
 $error =
     $_SESSION["password_error"]
     ?? "";
@@ -15,12 +9,6 @@ $error =
 $success =
     $_SESSION["password_success"]
     ?? "";
-
-/*
-|--------------------------------------------------------------------------
-| REMOVE ONE-TIME SESSION MESSAGES
-|--------------------------------------------------------------------------
-*/
 
 unset(
     $_SESSION["password_error"],
@@ -171,15 +159,12 @@ unset(
                     </button>
 
                 </div>
-                <!-- SUBMIT BUTTON -->
-
+                
                 <button type="submit">
 
                     Update Password
 
                 </button>
-
-                <!-- BACK BUTTON -->
 
                 <a href="Dashboard.php" class="back">
 
