@@ -2,12 +2,6 @@
 
 require_once "auth.php";
 
-/*
-|--------------------------------------------------------------------------
-| CURRENT USER
-|--------------------------------------------------------------------------
-*/
-
 $userId =
     (int) (
         $_SESSION["user_id"]
@@ -49,12 +43,6 @@ $user =
 
 $userStmt->close();
 
-/*
-|--------------------------------------------------------------------------
-| USER NOT FOUND
-|--------------------------------------------------------------------------
-*/
-
 if (!$user) {
     $_SESSION = [];
 
@@ -65,12 +53,6 @@ if (!$user) {
     header("Location: Login.php");
     exit;
 }
-
-/*
-|--------------------------------------------------------------------------
-| CHECK ACCOUNT STATUS
-|--------------------------------------------------------------------------
-*/
 
 if (
     strtolower(
@@ -87,12 +69,6 @@ if (
     header("Location: Login.php");
     exit;
 }
-
-/*
-|--------------------------------------------------------------------------
-| RECENT ACTIVITY
-|--------------------------------------------------------------------------
-*/
 
 $logSql = "
     SELECT
@@ -124,12 +100,6 @@ $logStmt->execute();
 $logs =
     $logStmt->get_result();
 
-/*
-|--------------------------------------------------------------------------
-| DISPLAY VALUES
-|--------------------------------------------------------------------------
-*/
-
 $accountStatus =
     ucfirst(
         $user["account_status"]
@@ -154,11 +124,6 @@ $accountStatus =
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
     <style>
-        /*
-        |--------------------------------------------------------------------------
-        | SESSION COUNTDOWN PANEL
-        |--------------------------------------------------------------------------
-        */
 
         .session-panel {
             display: flex;
@@ -237,8 +202,6 @@ $accountStatus =
 
 <body>
 
-    <!-- SIDEBAR -->
-
     <div class="sidebar">
 
         <h2>
@@ -299,8 +262,6 @@ $accountStatus =
 
     </div>
 
-    <!-- MAIN CONTENT -->
-
     <div class="main">
 
         <div class="top">
@@ -311,8 +272,6 @@ $accountStatus =
             </h1>
 
         </div>
-
-        <!-- SESSION COUNTDOWN -->
 
         <div class="session-panel">
 
@@ -339,8 +298,6 @@ $accountStatus =
             </div>
 
         </div>
-
-        <!-- USER CARDS -->
 
         <div class="cards">
 
@@ -375,8 +332,6 @@ $accountStatus =
             </div>
 
         </div>
-
-        <!-- ACTIVITY TABLE -->
 
         <div class="table-box">
 
