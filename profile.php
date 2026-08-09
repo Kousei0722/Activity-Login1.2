@@ -2,23 +2,11 @@
 
 require_once "auth.php";
 
-/*
-|--------------------------------------------------------------------------
-| GET LOGGED-IN USER ID
-|--------------------------------------------------------------------------
-*/
-
 $userId =
     (int) (
         $_SESSION["user_id"]
         ?? 0
     );
-
-/*
-|--------------------------------------------------------------------------
-| GET ONE-TIME SESSION MESSAGES
-|--------------------------------------------------------------------------
-*/
 
 $error =
     $_SESSION["profile_error"]
@@ -32,12 +20,6 @@ unset(
     $_SESSION["profile_error"],
     $_SESSION["profile_success"]
 );
-
-/*
-|--------------------------------------------------------------------------
-| GET USER PROFILE
-|--------------------------------------------------------------------------
-*/
 
 $userSql = "
     SELECT
@@ -82,12 +64,6 @@ $user =
 $userStmt->close();
 $conn->close();
 
-/*
-|--------------------------------------------------------------------------
-| CHECK IF USER EXISTS
-|--------------------------------------------------------------------------
-*/
-
 if (!$user) {
     $_SESSION = [];
 
@@ -96,12 +72,6 @@ if (!$user) {
     header("Location: Login.php");
     exit;
 }
-
-/*
-|--------------------------------------------------------------------------
-| PROFILE VALUES
-|--------------------------------------------------------------------------
-*/
 
 $displayRole =
     !empty($user["role"])
@@ -284,15 +254,11 @@ $memberSince =
 
         <div class="profile-card">
 
-            <!-- PROFILE ICON -->
-
             <div class="profile-image">
 
                 <i class="bx bxs-user-circle"></i>
 
             </div>
-
-            <!-- USERNAME AND ROLE -->
 
             <h2>
                 <?= htmlspecialchars($user["username"]) ?>
@@ -301,8 +267,6 @@ $memberSince =
             <p class="role">
                 <?= htmlspecialchars($displayRole) ?>
             </p>
-
-            <!-- ERROR MESSAGE -->
 
             <?php if ($error !== ""): ?>
 
@@ -314,8 +278,6 @@ $memberSince =
 
             <?php endif; ?>
 
-            <!-- SUCCESS MESSAGE -->
-
             <?php if ($success !== ""): ?>
 
                 <div class="message success">
@@ -325,8 +287,6 @@ $memberSince =
                 </div>
 
             <?php endif; ?>
-
-            <!-- PROFILE INFORMATION -->
 
             <div class="info">
 
@@ -372,8 +332,6 @@ $memberSince =
 
             </div>
 
-            <!-- EDIT PROFILE FORM -->
-
             <form class="edit-form" action="update_profile.php" method="POST" autocomplete="off">
 
                 <div class="form-group">
@@ -417,8 +375,6 @@ $memberSince =
                 </button>
 
             </form>
-
-            <!-- NAVIGATION BUTTONS -->
 
             <div class="buttons">
 
