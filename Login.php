@@ -5,12 +5,6 @@ session_start();
 require_once "config.php";
 require_once "helpers.php";
 
-/*
-|--------------------------------------------------------------------------
-| REDIRECT LOGGED-IN USERS
-|--------------------------------------------------------------------------
-*/
-
 if (
     isset($_SESSION["user_id"])
     || tryRememberLogin($conn)
@@ -20,12 +14,6 @@ if (
     header("Location: Dashboard.php");
     exit;
 }
-
-/*
-|--------------------------------------------------------------------------
-| GET SESSION MESSAGES
-|--------------------------------------------------------------------------
-*/
 
 $error =
     $_SESSION["error"]
@@ -41,12 +29,6 @@ $lockUntil =
         ?? 0
     );
 
-/*
-|--------------------------------------------------------------------------
-| REMOVE EXPIRED ACCOUNT LOCK
-|--------------------------------------------------------------------------
-*/
-
 if (
     $lockUntil > 0
     && time() >= $lockUntil
@@ -57,12 +39,6 @@ if (
         $_SESSION["lock_until_timestamp"]
     );
 }
-
-/*
-|--------------------------------------------------------------------------
-| REMOVE ONE-TIME SESSION VALUES
-|--------------------------------------------------------------------------
-*/
 
 unset(
     $_SESSION["error"],
@@ -90,11 +66,6 @@ $conn->close();
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        /*
-        |--------------------------------------------------------------------------
-        | NOTICES
-        |--------------------------------------------------------------------------
-        */
 
         .notice {
             padding: 10px 12px;
@@ -112,24 +83,12 @@ $conn->close();
             background: #167a4b;
         }
 
-        /*
-        |--------------------------------------------------------------------------
-        | PASSWORD MESSAGES
-        |--------------------------------------------------------------------------
-        */
-
         .strength {
             min-height: 18px;
             margin: -12px 0 12px;
             color: #ffffff;
             font-size: 0.82rem;
         }
-
-        /*
-        |--------------------------------------------------------------------------
-        | ACCOUNT LOCK
-        |--------------------------------------------------------------------------
-        */
 
         .lock-box {
             padding: 10px;
@@ -145,12 +104,6 @@ $conn->close();
             cursor: not-allowed;
         }
 
-        /*
-        |--------------------------------------------------------------------------
-        | HIDDEN AUTOFILL TRAP
-        |--------------------------------------------------------------------------
-        */
-
         .autofill-trap {
             position: absolute;
             width: 1px;
@@ -161,12 +114,6 @@ $conn->close();
             left: -9999px;
             top: -9999px;
         }
-
-        /*
-        |--------------------------------------------------------------------------
-        | PASSWORD EYE ICON
-        |--------------------------------------------------------------------------
-        */
 
         .input-box {
             position: relative;
@@ -225,10 +172,6 @@ $conn->close();
 
     <section>
 
-        <!-- =====================================================
-             LOGIN FORM
-        ====================================================== -->
-
         <div class="login-box">
 
             <form id="loginForm" action="process_login.php" method="POST" autocomplete="off">
@@ -269,8 +212,6 @@ $conn->close();
 
                 <?php endif; ?>
 
-                <!-- AUTOFILL TRAP -->
-
                 <div class="autofill-trap" aria-hidden="true">
 
                     <input type="text" name="fake_login_identifier" autocomplete="username" tabindex="-1">
@@ -278,8 +219,6 @@ $conn->close();
                     <input type="password" name="fake_login_password" autocomplete="current-password" tabindex="-1">
 
                 </div>
-
-                <!-- LOGIN IDENTIFIER -->
 
                 <div class="input-box">
 
@@ -297,8 +236,6 @@ $conn->close();
                     </label>
 
                 </div>
-
-                <!-- LOGIN PASSWORD -->
 
                 <div class="input-box">
 
@@ -323,8 +260,6 @@ $conn->close();
                     </button>
 
                 </div>
-
-                <!-- REMEMBER ME -->
 
                 <div class="remember-forgot">
 
@@ -368,17 +303,12 @@ $conn->close();
 
         </div>
 
-        <!-- =====================================================
-             REGISTRATION FORM
-        ====================================================== -->
-
         <div class="sign-up">
 
             <form id="registerForm" action="process_register.php" method="POST" autocomplete="off">
 
                 <h2>Register</h2>
 
-                <!-- AUTOFILL TRAP -->
 
                 <div class="autofill-trap" aria-hidden="true">
 
@@ -387,8 +317,6 @@ $conn->close();
                     <input type="password" name="fake_password" autocomplete="current-password" tabindex="-1">
 
                 </div>
-
-                <!-- FULL NAME -->
 
                 <div class="input-box">
 
@@ -401,8 +329,6 @@ $conn->close();
 
                 </div>
 
-                <!-- USERNAME -->
-
                 <div class="input-box">
 
                     <input type="text" name="username" id="regUsername" autocomplete="off" autocapitalize="none"
@@ -414,8 +340,6 @@ $conn->close();
 
                 </div>
 
-                <!-- EMAIL -->
-
                 <div class="input-box">
 
                     <input type="email" name="email" id="regEmail" autocomplete="off" autocapitalize="none"
@@ -426,8 +350,6 @@ $conn->close();
                     </label>
 
                 </div>
-
-                <!-- PASSWORD -->
 
                 <div class="input-box">
 
@@ -449,8 +371,6 @@ $conn->close();
 
                 <div id="strengthMessage" class="strength"></div>
 
-                <!-- CONFIRM PASSWORD -->
-
                 <div class="input-box">
 
                     <input type="password" name="confirm_password" id="confirmPassword" autocomplete="new-password"
@@ -470,8 +390,6 @@ $conn->close();
                 </div>
 
                 <div id="confirmMessage" class="strength"></div>
-
-                <!-- TERMS -->
 
                 <div class="remember-forgot">
 
