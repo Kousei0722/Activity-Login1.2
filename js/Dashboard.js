@@ -2,12 +2,6 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        /*
-        |--------------------------------------------------------------------------
-        | ACTIVE SIDEBAR LINK
-        |--------------------------------------------------------------------------
-        */
-
         const currentPage =
             window.location.pathname
                 .split("/")
@@ -30,12 +24,6 @@ document.addEventListener(
                 }
 
             });
-
-        /*
-        |--------------------------------------------------------------------------
-        | LOGOUT CONFIRMATION
-        |--------------------------------------------------------------------------
-        */
 
         const logoutLink =
             document.querySelector(
@@ -61,12 +49,6 @@ document.addEventListener(
             );
 
         }
-
-        /*
-        |--------------------------------------------------------------------------
-        | WELCOME FADE-IN
-        |--------------------------------------------------------------------------
-        */
 
         const welcome =
             document.querySelector(
@@ -99,12 +81,6 @@ document.addEventListener(
 
         }
 
-        /*
-        |--------------------------------------------------------------------------
-        | CARD HOVER EFFECT
-        |--------------------------------------------------------------------------
-        */
-
         document
             .querySelectorAll(".card")
             .forEach((card) => {
@@ -130,12 +106,6 @@ document.addEventListener(
                 );
 
             });
-
-        /*
-        |--------------------------------------------------------------------------
-        | RESPONSIVE SIDEBAR
-        |--------------------------------------------------------------------------
-        */
 
         const sidebar =
             document.querySelector(
@@ -173,15 +143,6 @@ document.addEventListener(
             updateSidebar
         );
 
-        /*
-        |--------------------------------------------------------------------------
-        | AUTOMATIC LOGOUT SETTINGS
-        |--------------------------------------------------------------------------
-        |
-        | The user will be logged out after 30 seconds of inactivity.
-        |--------------------------------------------------------------------------
-        */
-
         const logoutDuration =
             30;
 
@@ -214,12 +175,6 @@ document.addEventListener(
                 "sessionDot"
             );
 
-        /*
-        |--------------------------------------------------------------------------
-        | FORMAT COUNTDOWN
-        |--------------------------------------------------------------------------
-        */
-
         function formatTime(seconds) {
 
             const safeSeconds =
@@ -250,12 +205,6 @@ document.addEventListener(
 
         }
 
-        /*
-        |--------------------------------------------------------------------------
-        | UPDATE COUNTDOWN DISPLAY
-        |--------------------------------------------------------------------------
-        */
-
         function updateCountdownDisplay() {
 
             if (countdownElement) {
@@ -268,12 +217,6 @@ document.addEventListener(
             }
 
         }
-
-        /*
-        |--------------------------------------------------------------------------
-        | UPDATE STATUS DISPLAY
-        |--------------------------------------------------------------------------
-        */
 
         function updateStatus(
             title,
@@ -316,12 +259,6 @@ document.addEventListener(
 
         }
 
-        /*
-        |--------------------------------------------------------------------------
-        | AUTOMATIC LOGOUT
-        |--------------------------------------------------------------------------
-        */
-
         function automaticLogout() {
 
             if (logoutStarted) {
@@ -350,11 +287,6 @@ document.addEventListener(
                 "expired"
             );
 
-            /*
-            Redirect through Logout.php so the session and
-            Remember Me token are securely removed.
-            */
-
             window.setTimeout(
                 () => {
 
@@ -367,12 +299,6 @@ document.addEventListener(
             );
 
         }
-
-        /*
-        |--------------------------------------------------------------------------
-        | RESET INACTIVITY TIMER
-        |--------------------------------------------------------------------------
-        */
 
         function resetInactivityTimer() {
 
@@ -393,12 +319,6 @@ document.addEventListener(
 
         }
 
-        /*
-        |--------------------------------------------------------------------------
-        | START COUNTDOWN
-        |--------------------------------------------------------------------------
-        */
-
         function startCountdown() {
 
             updateCountdownDisplay();
@@ -414,10 +334,6 @@ document.addEventListener(
                         remainingSeconds--;
 
                         updateCountdownDisplay();
-
-                        /*
-                        Show warning during the final 10 seconds.
-                        */
 
                         if (
                             remainingSeconds <= 10
@@ -446,12 +362,6 @@ document.addEventListener(
 
         }
 
-        /*
-        |--------------------------------------------------------------------------
-        | USER ACTIVITY EVENTS
-        |--------------------------------------------------------------------------
-        */
-
         const activityEvents = [
             "mousedown",
             "mousemove",
@@ -465,10 +375,6 @@ document.addEventListener(
             null;
 
         function handleUserActivity() {
-
-            /*
-            Prevent excessive resets caused by continuous mouse movement.
-            */
 
             if (activityResetDelay) {
                 return;
@@ -502,12 +408,6 @@ document.addEventListener(
 
             }
         );
-
-        /*
-        |--------------------------------------------------------------------------
-        | LOGOUT WHEN PAGE IS HIDDEN FOR TOO LONG
-        |--------------------------------------------------------------------------
-        */
 
         let hiddenStartedAt =
             null;
@@ -557,12 +457,6 @@ document.addEventListener(
 
             }
         );
-
-        /*
-        |--------------------------------------------------------------------------
-        | INITIALIZE AUTOMATIC LOGOUT
-        |--------------------------------------------------------------------------
-        */
 
         resetInactivityTimer();
         startCountdown();
