@@ -2,12 +2,6 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        /*
-        |--------------------------------------------------------------------------
-        | ELEMENTS
-        |--------------------------------------------------------------------------
-        */
-
         const loginBox =
             document.querySelector(
                 ".login-box"
@@ -88,27 +82,11 @@ document.addEventListener(
                 "confirmMessage"
             );
 
-        /*
-        |--------------------------------------------------------------------------
-        | LOCAL STORAGE KEYS
-        |--------------------------------------------------------------------------
-        |
-        | Username/email lamang ang puwedeng i-save.
-        | Hindi kailanman ise-save ang password.
-        |--------------------------------------------------------------------------
-        */
-
         const rememberStatusKey =
             "loginRememberEnabled";
 
         const savedIdentifierKey =
             "savedLoginIdentifier";
-
-        /*
-        |--------------------------------------------------------------------------
-        | RESTORE REMEMBERED LOGIN IDENTIFIER
-        |--------------------------------------------------------------------------
-        */
 
         function restoreRememberedLogin() {
             const rememberEnabled =
@@ -154,10 +132,6 @@ document.addEventListener(
                 );
             }
 
-            /*
-            Password is always cleared.
-            */
-
             if (loginPasswordInput) {
                 loginPasswordInput.value =
                     "";
@@ -165,11 +139,6 @@ document.addEventListener(
         }
 
         restoreRememberedLogin();
-
-        /*
-        Chrome may apply autofill shortly after DOMContentLoaded.
-        Restore our intended login behavior again.
-        */
 
         window.setTimeout(
             restoreRememberedLogin,
@@ -180,12 +149,6 @@ document.addEventListener(
             restoreRememberedLogin,
             500
         );
-
-        /*
-        |--------------------------------------------------------------------------
-        | SAVE LOGIN IDENTIFIER ONLY WHEN REMEMBER ME IS CHECKED
-        |--------------------------------------------------------------------------
-        */
 
         loginForm?.addEventListener(
             "submit",
@@ -223,19 +186,8 @@ document.addEventListener(
                         savedIdentifierKey
                     );
                 }
-
-                /*
-                The password is never placed in localStorage
-                or sessionStorage.
-                */
             }
         );
-
-        /*
-        |--------------------------------------------------------------------------
-        | REMOVE SAVED IDENTIFIER WHEN REMEMBER ME IS UNCHECKED
-        |--------------------------------------------------------------------------
-        */
 
         rememberMeInput?.addEventListener(
             "change",
@@ -254,22 +206,10 @@ document.addEventListener(
             }
         );
 
-        /*
-        |--------------------------------------------------------------------------
-        | SHOW LOGIN FORM FIRST
-        |--------------------------------------------------------------------------
-        */
-
         if (signUpBox) {
             signUpBox.style.display =
                 "none";
         }
-
-        /*
-        |--------------------------------------------------------------------------
-        | CLEAR REGISTRATION AUTOFILL
-        |--------------------------------------------------------------------------
-        */
 
         function clearRegisterFields() {
             const registerInputs = [
@@ -311,11 +251,6 @@ document.addEventListener(
             }
         }
 
-        /*
-        Chrome can apply autofill after DOMContentLoaded,
-        so clear the registration fields multiple times.
-        */
-
         clearRegisterFields();
 
         window.setTimeout(
@@ -327,12 +262,6 @@ document.addEventListener(
             clearRegisterFields,
             500
         );
-
-        /*
-        |--------------------------------------------------------------------------
-        | OPEN REGISTRATION FORM
-        |--------------------------------------------------------------------------
-        */
 
         registerLink?.addEventListener(
             "click",
@@ -360,12 +289,6 @@ document.addEventListener(
             }
         );
 
-        /*
-        |--------------------------------------------------------------------------
-        | RETURN TO LOGIN FORM
-        |--------------------------------------------------------------------------
-        */
-
         loginLink?.addEventListener(
             "click",
             (event) => {
@@ -390,12 +313,6 @@ document.addEventListener(
                 loginEmailInput?.focus();
             }
         );
-
-        /*
-        |--------------------------------------------------------------------------
-        | PASSWORD STRENGTH
-        |--------------------------------------------------------------------------
-        */
 
         function getPasswordStrength(
             password
@@ -495,13 +412,7 @@ document.addEventListener(
             "input",
             updatePasswordStrength
         );
-
-        /*
-        |--------------------------------------------------------------------------
-        | CONFIRM PASSWORD
-        |--------------------------------------------------------------------------
-        */
-
+        
         function updatePasswordMatch() {
             if (
                 !passwordInput
@@ -553,12 +464,6 @@ document.addEventListener(
                 updatePasswordMatch
             );
 
-        /*
-        |--------------------------------------------------------------------------
-        | REGISTRATION FORM VALIDATION
-        |--------------------------------------------------------------------------
-        */
-
         registerForm?.addEventListener(
             "submit",
             (event) => {
@@ -588,12 +493,6 @@ document.addEventListener(
                 }
             }
         );
-
-        /*
-        |--------------------------------------------------------------------------
-        | ACCOUNT LOCK COUNTDOWN
-        |--------------------------------------------------------------------------
-        */
 
         const lockUntil =
             Number(
